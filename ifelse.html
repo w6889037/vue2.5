@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>条件渲染</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="show">
+            <div v-text="message"></div>
+        </div>
+        <div v-else>bye world</div>
+        ===============================
+        <div v-if="show==='a'">{{message}}</div>
+        <div v-else-if="show==='b'">haha</div>
+        <div v-else>hehe</div>
+        ===============================
+        <div v-show="show">
+            <div v-text="message"></div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                show: false,
+                message: "hello world"
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>toDoList</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="inputValue">{{inputValue}}
+        <button v-on:click="handleClick">提交</button>
+        <br> 全局组件：
+        <todo-item v-bind:content="item" v-for="item in list"></todo-item>
+        <br> 局部组件：
+        <to-do v-bind:content="item" v-bind:index="index" v-for="(item, index) in list" @delete="handleDelete"></to-do>
+    </div>
+
+    <script>
+        //全局组件
+        Vue.component("TodoItem", {
+            props: ["content"],//接收v-bind:content的传参
+            template: "<ul><li>{{content}}</li></ul>"
+        })
+
+        //局部组件需要注册
+        var ToDo = {
+            props: ["content", "index"],
+            template: "<ul><li @click='handleDelete'>{{content}}</li></ul>",
+            methods: {
+                handleDelete: function () {
+                    this.$emit("delete", this.index)
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: "#app",
+            //局部组件需要注册
+            components: {
+                ToDo: ToDo
+            },
+            data: {
+                list: [],
+                inputValue: ""
+            },
+            methods: {
+                handleClick: function () {
+                    this.list.push(this.inputValue)
+                    this.inputValue = ""
+                },
+                handleDelete: function (index) {
+                    this.list.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>

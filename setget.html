@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>set get</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-text="fullName"></div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                firstName: "zhang",
+                lastName: "san"
+            },
+            //计算(有缓存)
+            computed: {
+                fullName: {
+                    get: function () {
+                        return this.firstName + " " + this.lastName
+                    },
+                    set: function (value) {
+                        this.firstName = value
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

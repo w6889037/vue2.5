@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>template</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>{{name}}</div>
+            <div v-text="name"></div>
+            <div v-html="name"></div>
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    name: "<h1>Dell</h1>"
+                }
+            })
+        </script>
+    </body>
+</html>

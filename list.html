@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>计算属性、方法、侦听器</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 遍历数组 -->
+        <template v-for="(item,index) in list">
+            <div :key="item.id">{{item.text}}===={{index}}</div>
+        </template>
+        <h1></h1>
+        <!-- 遍历对象 -->
+        <template v-for="(value,key,index) in userInfo">
+            <div>{{key}}======{{value}}======={{index}}</div>
+        </template>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //向数组中添加数据 app.list.push({id: 6666,text: "ffff"})
+                //更新数组中的数据 
+                //app.list.splice(1,1,{id: 2222,text: "box"})
+                //实例方法：app.$set(app.list,0,{ id: 1111, text: "pppp" })
+                //全局方法：Vue.set(app.list,0,{ id: 1111, text: "oooo" })
+                //删除数组中的数据 app.list.splice(1,1)
+                list: [
+                    { id: 1111, text: "aaaa" },
+                    { id: 2222, text: "bbbb" },
+                    { id: 3333, text: "cccc" },
+                    { id: 4444, text: "dddd" },
+                    { id: 5555, text: "eeee" },
+                ],
+                //更新对象中的属性 
+                //实例方法：app.$set(app.userInfo,"address","beijing")
+                //全局方法：Vue.set(app.userInfo,"aaa","AAA")
+                userInfo: {
+                    username: "aaaa",
+                    password: "111111",
+                    age: 21
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

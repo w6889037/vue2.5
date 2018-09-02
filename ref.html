@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>计算属性、方法、侦听器</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <counter ref="one" @change="handleClickTotal"></counter>
+        <counter ref="two" @change="handleClickTotal"></counter>
+        <div>{{total}}</div>
+    </div>
+    <script>
+        Vue.component("counter", {
+            template: "<div @click='handleClick'>{{number}}</div>",
+            data: function () {
+                return {
+                    number: 0
+                }
+            },
+            methods: {
+                handleClick: function () {
+                    this.number++
+                    this.$emit("change")
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                total: 0
+            },
+            methods: {
+                handleClickTotal: function () {
+                    this.total = this.$refs.one.number + this.$refs.two.number
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
