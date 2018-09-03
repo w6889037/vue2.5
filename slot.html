@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>插槽</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <div slot="header">header</div>
+            <div slot="footer">footer</div>
+        </child>
+    </div>
+
+    <script>
+        Vue.component("child", {
+            template: `<div>
+                            <slot name='header'>默认header</slot>
+                                <div>hello</div>
+                            <slot name='footer'>默认footer</slot>
+                        </div>`
+        })
+
+        var app = new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+
+</html>

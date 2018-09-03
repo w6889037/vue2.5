@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>绑定原生事件</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child @click.native="handleClick"></child>
+    </div>
+
+    <script>
+        Vue.component("child", {
+            template: "<div>hello world</div>"
+        })
+
+        var app = new Vue({
+            el: "#app",
+            methods: {
+                handleClick: function () {
+                    alert("绑定原生事件")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

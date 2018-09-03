@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>父子组件参数校验</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child content="11111111"></child>
+    </div>
+
+    <script>
+        Vue.component("child", {
+            props: {
+                content: {
+                    type: [String, Number],
+                    required: false,
+                    default: "hahahahaha",
+                    validator: function (value) {
+                        return value.length > 5
+                    }
+                }
+            },
+            template: "<div>{{content}}</div>"
+        })
+
+        var app = new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+
+</html>

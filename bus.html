@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>非父子组件bus传值</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child content="Dell"></child>
+        <child content="Lee"></child>
+    </div>
+
+    <script>
+        Vue.prototype.bus = new Vue()
+
+        Vue.component("child", {
+            props: {
+                content: {
+                    type: String
+                }
+            },
+            data: function () {
+                return {
+                    selfContent: this.content
+                }
+            },
+            template: "<div @click='handleClick'>{{selfContent}}</div>",
+            methods: {
+                handleClick: function () {
+                    this.bus.$emit("change", this.selfContent)
+                }
+            },
+            mounted() {
+                var this_ = this
+                this.bus.$on("change", function(msg){
+                    this_.selfContent = msg
+                })   
+            }
+        })
+
+        var app = new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+
+</html>
