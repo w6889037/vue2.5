@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>作用域插槽</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <template slot-scope="list">
+                <li>{{list.content}}</li>
+            </template>
+        </child>
+    </div>
+
+    <script>
+        Vue.component("child", {
+            data: function () {
+                return {
+                    list: [1, 2, 3, 4, 5]
+                }
+            },
+            template: `<div>
+                            <ul>
+                                <slot v-for="item in list" :content=item></slot>
+                            </ul>
+                        </div>`
+        })
+
+        var app = new Vue({
+            el: "#app"
+        })
+    </script>
+</body>
+
+</html>

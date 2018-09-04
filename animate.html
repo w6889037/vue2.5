@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>动画</title>
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+</head>
+
+<body>
+    <div id="app">
+        <transition name="fade" enter-active-class="animated swing" leave-active-class="animated shake">
+            <div v-if="show">hello</div>
+        </transition>
+        <button @click="handleClick">handleClick</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
