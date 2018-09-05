@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>动画</title>
+    <script src="./vue.js"></script>
+    <script src="./velocity.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <transition name="fade" @before-enter="handleBeforeEnter" @enter="handleEnter" @after-enter="handleAfterEnter">
+            <div v-if="show">hello</div>
+        </transition>
+        <button @click="handleClick">handleClick</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                show: true
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show
+                },
+                handleBeforeEnter: function (el) {
+                    el.style.color = "red"
+                },
+                handleEnter: function (el, done) {
+                    setTimeout(() => {
+                        el.style.color = "green"
+                    }, 2000);
+                    setTimeout(() => {
+                        done()
+                    }, 4000);
+                },
+                handleAfterEnter: function (el) {
+                    el.style.color = "#000"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -5,11 +5,23 @@
     <title>动画</title>
     <script src="./vue.js"></script>
     <link rel="stylesheet" type="text/css" href="./animate.css">
+    <style>
+        .fade-enter,.fade-leave-to{
+            opacity: 0
+        }
+        .fade-enter-active,.fade-leave-active{
+            transition: opacity 3s
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <transition name="fade" enter-active-class="animated swing" leave-active-class="animated shake">
+        <transition name="fade" 
+                    appear 
+                    enter-active-class="animated swing fade-enter-active"
+                    leave-active-class="animated shake fade-leave-active"
+                    appear-active-class="animated swing">
             <div v-if="show">hello</div>
         </transition>
         <button @click="handleClick">handleClick</button>
