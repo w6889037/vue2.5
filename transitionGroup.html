@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>transitionGroup</title>
+    <script src="./vue.js"></script>
+    <style>
+        .v-enter,.v-leave-to{
+            opacity: 0;
+        }
+        .v-enter-active,.v-leave-active{
+            transition: opacity 1s
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <transition-group>
+            <div v-for="(item, index) in list" :key="item.id">
+                {{index}}==={{item.name}}==={{item.id}}
+            </div>
+        </transition-group>
+        <button @click="handleClick">handleClick</button>
+    </div>
+    <script>
+        var counter = 0;
+        var app = new Vue({
+            el: "#app",
+            data: {
+                list: [{
+                    id: counter,
+                    name: "hello world"
+                }]
+            },
+            methods: {
+                handleClick: function () {
+                    this.list.push({
+                        id: counter++,
+                        name: "hello world"
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
